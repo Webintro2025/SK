@@ -11,7 +11,7 @@ export default function Design() {
 				<div className="grid lg:grid-cols-2 gap-10 items-center">
 					<div className="relative">
 						<div className="w-full rounded-lg overflow-hidden shadow-lg">
-							<Image src="/kitchen-1.jpg" alt="kitchen" width={900} height={600} className="w-full h-auto object-cover" />
+							<Image src="/Malls Interior Design Service.png" alt="kitchen" width={900} height={600} className="w-full h-auto object-cover" />
 						</div>
 
 						{/* Circular badge */}
@@ -79,7 +79,7 @@ export default function Design() {
 
 					<div>
 						<div className="w-full rounded-lg overflow-hidden shadow-lg">
-							<Image src="/kitchen-2.jpg" alt="kitchen interior" width={900} height={600} className="w-full h-auto object-cover" />
+							<Image src="/Home Interior Designing Services.png" alt="kitchen interior" width={900} height={600} className="w-full h-auto object-cover" />
 						</div>
 					</div>
 				</div>

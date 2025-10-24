@@ -10,7 +10,7 @@ export default function About() {
           <div className="lg:col-span-5 flex justify-center lg:justify-start">
             <div className="w-[360px] lg:w-[520px] xl:w-[620px]">
               <div className="relative aspect-3/5 w-full overflow-hidden">
-                <Image src="/about-img.jpg" alt="kitchen" fill className="object-cover" />
+                <Image src="/Office Interior Designing Service.png" alt="kitchen" fill className="object-cover" />
               </div>
             </div>
           </div>

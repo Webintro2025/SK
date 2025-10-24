@@ -1,4 +1,5 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 
 const stats = [
@@ -9,15 +10,39 @@ const stats = [
 ]
 
 export default function Count(){
+  // animate all stats from 0 up to target (capped at 500 as requested)
+  const TARGET = 500
+  const duration = 2000 // ms
+
+  const [counts, setCounts] = useState(stats.map(()=>0))
+
+  useEffect(()=>{
+    let start = null
+    const initial = 0
+    const raf = (timestamp)=>{
+      if (!start) start = timestamp
+      const progress = Math.min((timestamp - start) / duration, 1)
+      const next = stats.map((s, idx)=>{
+        // if original value contains a number, ignore and just animate to TARGET per user request
+        const value = Math.min(TARGET, TARGET)
+        return Math.floor(initial + (value - initial) * progress)
+      })
+      setCounts(next)
+      if (progress < 1) requestAnimationFrame(raf)
+    }
+    const id = requestAnimationFrame(raf)
+    return ()=> cancelAnimationFrame(id)
+  }, [])
+
   return (
     <section className="relative">
-      {/* Background image (put your image in public/bg-kitchen.jpg) */}
+      {/* Background image: pick an existing image from public/ for visual */}
       <div className="absolute inset-0">
-        <Image src="/bg-kitchen.jpg" alt="kitchen" fill className="object-cover grayscale" />
-        <div className="absolute inset-0 bg-gray-900/75" />
+        <Image src="/Kitchen Interior Designing Service.png" alt="background" fill className="object-cover" />
+        <div className="absolute inset-0 bg-gray-900/60" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-20">
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-20 z-10">
         <div className="grid lg:grid-cols-2 gap-8 items-center">
           {/* Left heading */}
           <div>
@@ -28,9 +53,9 @@ export default function Count(){
           {/* Right stats grid */}
           <div>
             <div className="grid grid-cols-2 gap-6 text-center max-w-lg ml-auto">
-              {stats.map((s)=> (
+              {stats.map((s, idx)=> (
                 <div key={s.id} className="py-6 border border-white/10 rounded-lg">
-                  <div className="text-3xl lg:text-4xl font-extrabold text-amber-400">{s.value}</div>
+                  <div className="text-3xl lg:text-4xl font-extrabold text-amber-400">{counts[idx]}{counts[idx] >= TARGET ? '+' : ''}</div>
                   <div className="mt-2 text-sm text-gray-200">{s.label}</div>
                 </div>
               ))}
