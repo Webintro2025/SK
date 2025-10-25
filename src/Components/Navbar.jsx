@@ -65,11 +65,11 @@ export default function Navbar() {
 
 					<div className="flex items-center gap-4 flex-1 justify-end">
 						<a
-							href="https://wa.me/"
+							href="https://wa.me/919911639864"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="inline-flex items-center gap-2 bg-[#D2AD65] hover:bg-[#D2AD65] text-white font-medium text-sm px-4 py-2 rounded-full"
-							aria-label="Contact us on WhatsApp"
+							aria-label="Contact us on WhatsApp: +91 9911639864"
 						>
 							{/* WhatsApp-like phone bubble icon (white) */}
 							<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
