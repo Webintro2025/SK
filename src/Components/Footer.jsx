@@ -41,23 +41,23 @@ export default function Footer() {
             <h5 className="text-white font-semibold pl-26 mb-3">Products & Services</h5>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-400">
               <div className="space-y-1">
-                <a href="/product/interior-designing-service" className="hover:text-white">Interior Designing Service</a>
-                <a href="/product/modular-kitchen" className="hover:text-white">Modular Kitchen</a>
-                <a href="/product/window-installation-service" className="hover:text-white">Window Installation Service</a>
-                <a href="/product/upvc-windows-door-systems" className="hover:text-white">UPVC Windows &amp; Door Systems</a>
-                <a href="/product/l-shape-modular-kitchen" className="hover:text-white">L-Shape Modular Kitchen</a>
-                <a href="/product/aluminium-products-sliding-windows" className="hover:text-white">Aluminium Products (Sliding Windows)</a>
-                <a href="/product/false-ceiling-services" className="hover:text-white">False Ceiling Services</a>
+                <a href="/product/interior-designing-service" className="block hover:text-white">Interior Designing Service</a>
+                <a href="/product/modular-kitchen" className="block hover:text-white">Modular Kitchen</a>
+                <a href="/product/window-installation-service" className="block hover:text-white">Window Installation Service</a>
+                <a href="/product/upvc-windows-door-systems" className="block hover:text-white">UPVC Windows &amp; Door Systems</a>
+                <a href="/product/l-shape-modular-kitchen" className="block hover:text-white">L-Shape Modular Kitchen</a>
+                <a href="/product/aluminium-products-sliding-windows" className="block hover:text-white">Aluminium Products (Sliding Windows)</a>
+                <a href="/product/false-ceiling-services" className="block hover:text-white">False Ceiling Services</a>
               </div>
 
               <div className="space-y-1">
-                <a href="/product/renovation-services" className="hover:text-white">Renovation Services</a>
-                <a href="/product/wooden-almirah-storage" className="hover:text-white">Wooden Almirah &amp; Storage</a>
-                <a href="/product/construction-services" className="hover:text-white">Construction Services</a>
-                <a href="/product/fabrication-work-industrial" className="hover:text-white">Fabrication Work (Industrial)</a>
-                <a href="/product/sliding-almirah-specialized-storage" className="hover:text-white">Sliding Almirah (Specialized Storage)</a>
-                <a href="/product/aluminium-windows-specific" className="hover:text-white">Aluminium Windows (Specific Product Focus)</a>
-                <a href="/product/new-arrivals-specialty-items" className="hover:text-white">New Arrivals &amp; Specialty Items</a>
+                <a href="/product/renovation-services" className="block hover:text-white">Renovation Services</a>
+                <a href="/product/wooden-almirah-storage" className="block hover:text-white">Wooden Almirah &amp; Storage</a>
+                <a href="/product/construction-services" className="block hover:text-white">Construction Services</a>
+                <a href="/product/fabrication-work-industrial" className="block hover:text-white">Fabrication Work (Industrial)</a>
+                <a href="/product/sliding-almirah-specialized-storage" className="block hover:text-white">Sliding Almirah (Specialized Storage)</a>
+                <a href="/product/aluminium-windows-specific" className="block hover:text-white">Aluminium Windows (Specific Product Focus)</a>
+                <a href="/product/new-arrivals-specialty-items" className="block hover:text-white">New Arrivals &amp; Specialty Items</a>
               </div>
             </div>
           </div>

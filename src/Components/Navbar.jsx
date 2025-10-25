@@ -1,8 +1,12 @@
+"use client"
 import Link from 'next/link'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 
 export default function Navbar() {
+	const [mobileOpen, setMobileOpen] = useState(false)
+	const [mobileProductsOpen, setMobileProductsOpen] = useState(false)
+
 	return (
 		<>
 			<div className="fixed top-0 left-0 right-0 z-50">
@@ -24,15 +28,15 @@ export default function Navbar() {
 			<div className="max-w-7xl mx-auto px-6">
 				<div className="flex items-center justify-between h-20">
 					{/* Left: Logo */}
-					<div className="flex items-center flex-1">
+					<div >
 						<Link href="/" className="inline-flex items-center gap-3">
-							{/* If you have a logo file put it in /public and update src accordingly */}
-											<div className="relative w-52 h-20">
+							{/* Responsive logo: smaller on mobile, larger on desktop */}
+							{/* Mobile: narrower but taller; sm/md keep larger sizes */}
+							<div className="relative w-24 h-16 sm:w-44 sm:h-16 md:w-52 md:h-20">
 								<Image
 									src="/loogo.png"
 									alt="Kitchor"
 									fill
-											
 									className="object-contain"
 								/>
 							</div>
@@ -45,27 +49,9 @@ export default function Navbar() {
 							<li>
 								<Link href="/" className="inline-flex items-center gap-2 text-[#D2AD65] border-b-2 border-[#D2AD65] pb-2">Home</Link>
 							</li>
-							{/* Products with hover dropdown (desktop) */}
-							<li className="relative group">
-								<span className="inline-flex items-center cursor-pointer">Products</span>
-								<div className="absolute left-1/2 transform -translate-x-1/2 mt-3 w-[720px] lg:w-[820px] bg-white text-gray-800 rounded-xl shadow-lg ring-1 ring-black/5 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 translate-y-1 group-hover:translate-y-0">
-									<div className="p-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-										<Link href="/product/interior-designing-service" className="block px-3 py-2 rounded hover:bg-gray-50">Interior Designing Service</Link>
-										<Link href="/product/modular-kitchen" className="block px-3 py-2 rounded hover:bg-gray-50">Modular Kitchen</Link>
-										<Link href="/product/window-installation-service" className="block px-3 py-2 rounded hover:bg-gray-50">Window Installation Service</Link>
-										<Link href="/product/upvc-windows-door-systems" className="block px-3 py-2 rounded hover:bg-gray-50">UPVC Windows &amp; Door Systems</Link>
-										<Link href="/product/l-shape-modular-kitchen" className="block px-3 py-2 rounded hover:bg-gray-50">L-Shape Modular Kitchen</Link>
-										<Link href="/product/aluminium-products-sliding-windows" className="block px-3 py-2 rounded hover:bg-gray-50">Aluminium Products (Featuring Sliding Windows)</Link>
-										<Link href="/product/false-ceiling-services" className="block px-3 py-2 rounded hover:bg-gray-50">False Ceiling Services</Link>
-										<Link href="/product/renovation-services" className="block px-3 py-2 rounded hover:bg-gray-50">Renovation Services</Link>
-										<Link href="/product/wooden-almirah-storage" className="block px-3 py-2 rounded hover:bg-gray-50">Wooden Almirah &amp; Storage</Link>
-										<Link href="/product/construction-services" className="block px-3 py-2 rounded hover:bg-gray-50">Construction Services</Link>
-										<Link href="/product/fabrication-work-industrial" className="block px-3 py-2 rounded hover:bg-gray-50">Fabrication Work (Industrial)</Link>
-										<Link href="/product/sliding-almirah-specialized-storage" className="block px-3 py-2 rounded hover:bg-gray-50">Sliding Almirah (Specialized Storage)</Link>
-										<Link href="/product/aluminium-windows-specific" className="block px-3 py-2 rounded hover:bg-gray-50">Aluminium Windows (Specific Product Focus)</Link>
-										<Link href="/product/new-arrivals-specialty-items" className="block px-3 py-2 rounded hover:bg-gray-50">New Arrivals &amp; Specialty Items</Link>
-									</div>
-								</div>
+							{/* Products with hover dropdown (desktop) - JS controlled open/close with delay */}
+							<li className="relative" onMouseEnter={() => {}}>
+								<ProductsDropdown />
 							</li>
 							<li>
 								<Link href="/about" className="hover:text-gray-900">About us</Link>
@@ -94,10 +80,21 @@ export default function Navbar() {
 						</a>
 
 						{/* Mobile menu button (kept for small-screen nav) */}
-						<button aria-label="Open menu" className="md:hidden p-2 rounded hover:bg-gray-100">
-							<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-							</svg>
+						{/* Mobile menu button */}
+						<button
+							aria-label={mobileOpen ? "Close menu" : "Open menu"}
+							onClick={() => setMobileOpen(!mobileOpen)}
+							className="md:hidden p-2 rounded hover:bg-gray-100"
+						>
+							{mobileOpen ? (
+								<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+								</svg>
+							) : (
+								<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+								</svg>
+							)}
 						</button>
 					</div>
 				</div>
@@ -105,9 +102,112 @@ export default function Navbar() {
 				</header>
 			</div>
 
+			{/* Mobile menu panel (only on small screens). Desktop remains unchanged */}
+			<div className={`md:hidden fixed inset-x-0 top-28 z-40 transform transition-transform duration-200 ${mobileOpen ? 'translate-y-0 opacity-100' : '-translate-y-2/4 opacity-0 pointer-events-none'}`}>
+				<div className="bg-white shadow-lg mx-4 rounded-lg ring-1 ring-black/5 overflow-hidden">
+					<div className="px-4 py-4">
+						<nav>
+							<ul className="flex flex-col gap-2 text-gray-800">
+								<li>
+									<Link href="/" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded hover:bg-gray-50">Home</Link>
+								</li>
+								<li>
+									{/* Mobile Products collapsible */}
+									<button
+										onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+										className="w-full flex items-center justify-between px-3 py-2 rounded hover:bg-gray-50"
+										aria-expanded={mobileProductsOpen}
+									>
+										<span>Products</span>
+										<svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 transform transition-transform ${mobileProductsOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+										</svg>
+									</button>
+
+									<div className={`${mobileProductsOpen ? 'block' : 'hidden'} mt-2 pl-3 border-l border-gray-100`}> 
+										<ul className="flex flex-col gap-1">
+											<li><Link href="/product/interior-designing-service" onClick={() => { setMobileOpen(false); setMobileProductsOpen(false) }} className="block px-3 py-2 rounded hover:bg-gray-50">Interior Designing Service</Link></li>
+											<li><Link href="/product/modular-kitchen" onClick={() => { setMobileOpen(false); setMobileProductsOpen(false) }} className="block px-3 py-2 rounded hover:bg-gray-50">Modular Kitchen</Link></li>
+											<li><Link href="/product/window-installation-service" onClick={() => { setMobileOpen(false); setMobileProductsOpen(false) }} className="block px-3 py-2 rounded hover:bg-gray-50">Window Installation Service</Link></li>
+											<li><Link href="/product/upvc-windows-door-systems" onClick={() => { setMobileOpen(false); setMobileProductsOpen(false) }} className="block px-3 py-2 rounded hover:bg-gray-50">UPVC Windows &amp; Door Systems</Link></li>
+											<li><Link href="/product/l-shape-modular-kitchen" onClick={() => { setMobileOpen(false); setMobileProductsOpen(false) }} className="block px-3 py-2 rounded hover:bg-gray-50">L-Shape Modular Kitchen</Link></li>
+											<li><Link href="/product/aluminium-products-sliding-windows" onClick={() => { setMobileOpen(false); setMobileProductsOpen(false) }} className="block px-3 py-2 rounded hover:bg-gray-50">Aluminium Products (Featuring Sliding Windows)</Link></li>
+											<li><Link href="/product/false-ceiling-services" onClick={() => { setMobileOpen(false); setMobileProductsOpen(false) }} className="block px-3 py-2 rounded hover:bg-gray-50">False Ceiling Services</Link></li>
+											<li><Link href="/product/renovation-services" onClick={() => { setMobileOpen(false); setMobileProductsOpen(false) }} className="block px-3 py-2 rounded hover:bg-gray-50">Renovation Services</Link></li>
+											<li><Link href="/product/wooden-almirah-storage" onClick={() => { setMobileOpen(false); setMobileProductsOpen(false) }} className="block px-3 py-2 rounded hover:bg-gray-50">Wooden Almirah &amp; Storage</Link></li>
+											<li><Link href="/product/construction-services" onClick={() => { setMobileOpen(false); setMobileProductsOpen(false) }} className="block px-3 py-2 rounded hover:bg-gray-50">Construction Services</Link></li>
+											<li><Link href="/product/fabrication-work-industrial" onClick={() => { setMobileOpen(false); setMobileProductsOpen(false) }} className="block px-3 py-2 rounded hover:bg-gray-50">Fabrication Work (Industrial)</Link></li>
+											<li><Link href="/product/sliding-almirah-specialized-storage" onClick={() => { setMobileOpen(false); setMobileProductsOpen(false) }} className="block px-3 py-2 rounded hover:bg-gray-50">Sliding Almirah (Specialized Storage)</Link></li>
+											<li><Link href="/product/aluminium-windows-specific" onClick={() => { setMobileOpen(false); setMobileProductsOpen(false) }} className="block px-3 py-2 rounded hover:bg-gray-50">Aluminium Windows (Specific Product Focus)</Link></li>
+											<li><Link href="/product/new-arrivals-specialty-items" onClick={() => { setMobileOpen(false); setMobileProductsOpen(false) }} className="block px-3 py-2 rounded hover:bg-gray-50">New Arrivals &amp; Specialty Items</Link></li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<Link href="/about" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded hover:bg-gray-50">About us</Link>
+								</li>
+								<li>
+									<Link href="/contact" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded hover:bg-gray-50">Contact us</Link>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+
 			{/* spacer to offset fixed header height (top bar h-8 + header h-20 = 28) */}
 			<div className="h-28" aria-hidden="true" />
 		</>
+	)
+}
+
+
+function ProductsDropdown(){
+	const [open, setOpen] = useState(false)
+	const timeoutRef = useRef(null)
+
+	useEffect(()=>{
+		return () => {
+			if (timeoutRef.current) clearTimeout(timeoutRef.current)
+		}
+	}, [])
+
+	function handleEnter(){
+		if (timeoutRef.current) {
+			clearTimeout(timeoutRef.current)
+			timeoutRef.current = null
+		}
+		setOpen(true)
+	}
+
+	function handleLeave(){
+		// hide after 2 seconds
+		if (timeoutRef.current) clearTimeout(timeoutRef.current)
+		timeoutRef.current = setTimeout(()=> setOpen(false), 300)
+	}
+
+	return (
+		<div className="relative" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
+			<span className="inline-flex items-center cursor-pointer">Products</span>
+			<div className={`absolute left-1/2 transform -translate-x-1/2 mt-3 w-[720px] lg:w-[820px] bg-white text-gray-800 rounded-xl shadow-lg ring-1 ring-black/5 transition-all duration-200 ${open ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none translate-y-1'}`}>
+						<div className="p-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+							  <Link href="/product/interior-designing-service" onClick={() => setOpen(false)} className="block px-3 py-2 rounded hover:bg-gray-50 transition-colors duration-150">Interior Designing Service</Link>
+							  <Link href="/product/modular-kitchen" onClick={() => setOpen(false)} className="block px-3 py-2 rounded hover:bg-gray-50 transition-colors duration-150">Modular Kitchen</Link>
+							  <Link href="/product/window-installation-service" onClick={() => setOpen(false)} className="block px-3 py-2 rounded hover:bg-gray-50 transition-colors duration-150">Window Installation Service</Link>
+							  <Link href="/product/upvc-windows-door-systems" onClick={() => setOpen(false)} className="block px-3 py-2 rounded hover:bg-gray-50 transition-colors duration-150">UPVC Windows &amp; Door Systems</Link>
+							  <Link href="/product/l-shape-modular-kitchen" onClick={() => setOpen(false)} className="block px-3 py-2 rounded hover:bg-gray-50 transition-colors duration-150">L-Shape Modular Kitchen</Link>
+							  <Link href="/product/aluminium-products-sliding-windows" onClick={() => setOpen(false)} className="block px-3 py-2 rounded hover:bg-gray-50 transition-colors duration-150">Aluminium Products (Featuring Sliding Windows)</Link>
+							  <Link href="/product/false-ceiling-services" onClick={() => setOpen(false)} className="block px-3 py-2 rounded hover:bg-gray-50 transition-colors duration-150">False Ceiling Services</Link>
+							  <Link href="/product/renovation-services" onClick={() => setOpen(false)} className="block px-3 py-2 rounded hover:bg-gray-50 transition-colors duration-150">Renovation Services</Link>
+							  <Link href="/product/wooden-almirah-storage" onClick={() => setOpen(false)} className="block px-3 py-2 rounded hover:bg-gray-50 transition-colors duration-150">Wooden Almirah &amp; Storage</Link>
+							  <Link href="/product/construction-services" onClick={() => setOpen(false)} className="block px-3 py-2 rounded hover:bg-gray-50 transition-colors duration-150">Construction Services</Link>
+							  <Link href="/product/fabrication-work-industrial" onClick={() => setOpen(false)} className="block px-3 py-2 rounded hover:bg-gray-50 transition-colors duration-150">Fabrication Work (Industrial)</Link>
+							  <Link href="/product/sliding-almirah-specialized-storage" onClick={() => setOpen(false)} className="block px-3 py-2 rounded hover:bg-gray-50 transition-colors duration-150">Sliding Almirah (Specialized Storage)</Link>
+							  <Link href="/product/aluminium-windows-specific" onClick={() => setOpen(false)} className="block px-3 py-2 rounded hover:bg-gray-50 transition-colors duration-150">Aluminium Windows (Specific Product Focus)</Link>
+							  <Link href="/product/new-arrivals-specialty-items" onClick={() => setOpen(false)} className="block px-3 py-2 rounded hover:bg-gray-50 transition-colors duration-150">New Arrivals &amp; Specialty Items</Link>
+						</div>
+			</div>
+		</div>
 	)
 }
 

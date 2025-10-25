@@ -91,7 +91,7 @@ const GetInTouch = () => {
               ... We Are Available For You
             </span>
           </p>
-          <button className="bg-amber-400 text-black font-bold px-4 sm:px-6 py-2 sm:py-3 rounded-sm whitespace-nowrap hover:bg-amber-500 transition-colors text-xs sm:text-sm">
+          <button className=" text-white font-bold px-4 sm:px-6 py-2 sm:py-3 rounded-sm whitespace-nowrap hover:bg-amber-500 transition-colors text-xs sm:text-sm">
             CONTACT US
           </button>
         </div>

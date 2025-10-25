@@ -22,20 +22,31 @@ const ContactForm = () => {
     setSuccess(null);
     setError(null);
     try {
-      const res = await fetch("/api/sitemap/send-email", {
+      // POST to the serverless API route implemented at src/app/api/send-email/route.js
+      const res = await fetch("/api/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form)
+        body: JSON.stringify(form),
       });
-      const data = await res.json();
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        throw new Error(data.error || data.message || "Failed to send enquiry. Try again later.");
+      }
+
       if (data.success) {
         setSuccess("Your enquiry has been sent successfully!");
         setForm({ fullName: "", phoneNumber: "", email: "", message: "" });
+        // clear success message after a short while
+        setTimeout(() => setSuccess(null), 5000);
       } else {
-        setError(data.error || "Failed to send enquiry. Try again later.");
+        throw new Error(data.error || "Failed to send enquiry. Try again later.");
       }
     } catch (err) {
-      setError("Failed to send enquiry. Try again later.");
+      setError(err?.message || "Failed to send enquiry. Try again later.");
+      // clear error after some time so UI isn't permanent
+      setTimeout(() => setError(null), 6000);
     } finally {
       setLoading(false);
     }

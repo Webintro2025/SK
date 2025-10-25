@@ -6,10 +6,10 @@ const Maps = () => {
   const [userLocation, setUserLocation] = useState(null);
   const mapInstance = useRef(null);
 
-  const destinationLatLng =[ 28.780684, 77.050262]
+  const destinationLatLng = [28.58677, 77.07153];
 
 
-  const destinationAddress = 'I-142, Sector-3, Bawana Industrial Area, DSIIDC, New Delhi-110039';
+  const destinationAddress = 'B-183,Palam, Extn Part-1 Sector-7, Ramphal, Chowk Dwarka, New Delhi-110077, Delhi, India';
 
   useEffect(() => {
     // Load Leaflet CSS
