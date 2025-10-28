@@ -1,6 +1,15 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 
 export default function HomeBanner({ videoSrc = '/video.mp4' }) {
+  const [showText, setShowText] = useState(true)
+
+  useEffect(() => {
+    // hide the overlay text after 3 seconds
+    const t = setTimeout(() => setShowText(false), 3000)
+    return () => clearTimeout(t)
+  }, [])
+
   return (
     <section className="bg-white w-full">
       {/* full-bleed banner: container removed so media touches screen edges */}
@@ -11,8 +20,8 @@ export default function HomeBanner({ videoSrc = '/video.mp4' }) {
             <div className="w-full h-[660px] md:h-[740px] lg:h-[720px] overflow-hidden relative">
               <video src={videoSrc} autoPlay muted loop playsInline className="w-full h-full object-cover opacity-90" />
 
-              {/* Overlay text */}
-              <div className="absolute inset-0 flex items-center justify-center">
+              {/* Overlay text (will auto-hide after 3s) */}
+              <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${showText ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                 <div className="text-center px-6 max-w-3xl">
                   <p className="text-amber-400 uppercase tracking-wider text-sm mb-3">You dream it, we design it</p>
                   <h1 className="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-4">We can build you the kitchen of your dreams</h1>
