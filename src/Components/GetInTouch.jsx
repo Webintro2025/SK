@@ -59,7 +59,7 @@ const GetInTouch = () => {
                   Mail
                 </div>
                 <div className="text-[#23286b] font-bold text-sm sm:text-base md:text-lg transition-colors duration-300 group-hover:text-amber-400">
-                  <a href="mailto:apsinstruments@gmail.com" className="hover:underline hover:text-amber-400 transition-colors duration-200">skinterior02021986@gmail.com</a> 
+                  <a href="mailto:skinterior02021986@gmail.com" className="hover:underline hover:text-amber-400 transition-colors duration-200">skinterior02021986@gmail.com</a> 
 
                 </div>
               </div>

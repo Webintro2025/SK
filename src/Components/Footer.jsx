@@ -19,7 +19,7 @@ export default function Footer() {
             </div>
 
             <div className="text-sm text-gray-300 space-y-1">
-              <div>📍 I-142, Sector-3, Bawana Industrial Area, DSIIDC, New Delhi-110039</div>
+              <div>📍 B-183,Palam, Extn Part-1 Sector-7, Ramphal, Chowk Dwarka, New Delhi-110077, Delhi, India</div>
               <div>📞 9911639864</div>
               <div>✉️ skinterior02021986@gmail.com</div>
               <div>GST: 07CAHPK5281L1ZA</div>
