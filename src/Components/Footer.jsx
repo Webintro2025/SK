@@ -64,7 +64,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/10 mt-8 pt-6 text-center">
-          <div className="text-sm text-gray-400">© {new Date().getFullYear()} S.K. Interiors. All rights reserved.</div>
+          <div className="text-sm text-gray-400">© 2025 All Rights Reserved. The SK Interior Developed & Managed By With ❤ <a href="https://webintro.in/">Webintro.in</a>, <a href="https://webintro.in/delhi/">Google Promotion Services</a></div>
         </div>
       </div>
     </footer>
