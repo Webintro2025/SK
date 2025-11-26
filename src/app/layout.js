@@ -18,8 +18,8 @@ export const metadata = {
     "Aluminium Kitchen Services in Delhi | Modular Kitchen & Home Interior Experts",
   description:
     "Aluminium Kitchen Services in Delhi and across India offering durable, rust-proof, fire-resistant aluminium kitchens, modular kitchens, modular and aluminium almirahs, LCD panels, vanities, POP work, UPVC windows, painting, office interiors, full renovation, and complete home interior solutions.",
-  keywords:
-    "Aluminium Kitchen Services in Delhi, Aluminium Kitchen Services in India, Modular Kitchen Services in Delhi, Modular Almirah Services in Delhi, Aluminium Almirah Services in Delhi, Modular LCD Panel Services in Delhi, Vanity Services in Delhi, Bathroom Vanity Units in Delhi, POP Work Services in Delhi, UPVC Windows Services in Delhi, Painting Services in Delhi, Office Interior Services in Delhi, Full Renovation Services in Delhi, Home Interior Services in Delhi",
+  keywords:[
+    "Aluminium Kitchen Services in Delhi, Aluminium Kitchen Services in India, Modular Kitchen Services in Delhi, Modular Almirah Services in Delhi, Aluminium Almirah Services in Delhi, Modular LCD Panel Services in Delhi, Vanity Services in Delhi, Bathroom Vanity Units in Delhi, POP Work Services in Delhi, UPVC Windows Services in Delhi, Painting Services in Delhi, Office Interior Services in Delhi, Full Renovation Services in Delhi, Home Interior Services in Delhi"],
     verfication:{
       google: "fVvEq_xWs1XJUQkbRqFVrq-E42OrefkyLk0rknFvLCE",
     }
