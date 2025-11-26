@@ -2,7 +2,7 @@ import { locations } from '../../marketplace';
 
 export async function GET() {
   // Change this to your deployed domain
-  const baseUrl = 'https://www.sk-interior.in';
+  const baseUrl = 'https://sk-interior.in';
 
   // Static routes based on your app structure
   const staticRoutes = ['/', '/about', '/contact'];
