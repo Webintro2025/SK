@@ -1,4 +1,5 @@
-import ContactForm from "../../../components/ContactForm";
+import React from 'react';
+import ContactForm from '@/components/ContactForm';
 // Dynamic SEO metadata for each location page
 export function generateMetadata({ params }) {
  const { slug } = params;
