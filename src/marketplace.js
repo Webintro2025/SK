@@ -1,0 +1,30 @@
+
+// List of locations for APS Lab
+export const locations = [
+	"rajouri-garden",
+	"hari-nagar",
+	"raja-garden",
+	"subhash-nagar",
+	"mayapuri",
+	"dwarka",
+	"gurgaon",
+	"dwarka-mod",
+	"uttam-nagar",
+	"rajapuri",
+	"vikaspuri",
+	"tilak-nagar",
+	"patel-nagar",
+	"karol-bagh",
+	"mansarovar-garden",
+	"south-extension",
+	"palam",
+	"dwarka",
+	"punjabi-bagh",
+	"paschim-vihar",
+	"haryana",
+	"bahadurgarh",
+	"noida",
+	"greater-west",
+	"delhi-ncr",
+	"delhi"
+];
