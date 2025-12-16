@@ -12,8 +12,8 @@ function slugify(text = ''){
     .replace(/^-+|-+$/g, '')
 }
 
-export default function ProductPage({ params }){
-  const slug = params.slug
+export default async  function ProductPage({ params }){
+  const { slug } = await params
 
   // Flatten all service arrays into one list
   let allItems = []

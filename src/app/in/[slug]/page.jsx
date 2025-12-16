@@ -46,8 +46,8 @@ export function generateMetadata({ params }) {
   };
 
 
-export default function LocationPage({ params }) {
-  const { slug } = params;
+export default async function LocationPage({ params }) {
+  const { slug } = await  params;
 
   const normalizedSlug = decodeURIComponent(slug || '')
     .toLowerCase()
