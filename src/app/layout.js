@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title:
-    "Aluminium Kitchen Services in Delhi | Modular Kitchen & Home Interior Experts",
+    "SK Interior",
   description:
     "Aluminium Kitchen Services in Delhi and across India offering durable, rust-proof, fire-resistant aluminium kitchens, modular kitchens, modular and aluminium almirahs, LCD panels, vanities, POP work, UPVC windows, painting, office interiors, full renovation, and complete home interior solutions.",
   keywords:[
